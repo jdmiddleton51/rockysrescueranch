@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rocky's Rescue Ranch — Great Dane Rescue, North Texas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --barn:    #B02B2B;   /* red from logo barn */
+      --wood:    #7A4F2D;   /* wood sign brown    */
+      --cream:   #F5EFE0;   /* warm off-white     */
+      --slate:   #2A3540;   /* deep blue-grey     */
+      --blue-dane: #4A6070; /* the dog's coat     */
+      --gold:    #C8952A;   /* warm accent        */
+      --white:   #FFFFFF;
+      --light:   #F9F6F0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--light);
+      color: var(--slate);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--slate);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+    .nav-logo img {
+      height: 48px;
+      width: 48px;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+    .nav-logo span {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--cream);
+      line-height: 1.2;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--cream);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; }
+    .nav-links a.cta {
+      background: var(--barn);
+      color: white;
+      padding: 0.4rem 1.1rem;
+      border-radius: 4px;
+      opacity: 1;
+      font-weight: 600;
+    }
+    .nav-links a.cta:hover { background: #8f2020; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--slate);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 560px;
+    }
+    .hero-text {
+      padding: 5rem 3rem 5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .hero-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+    .hero-headline em {
+      color: var(--barn);
+      font-style: normal;
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(245,239,224,0.85);
+      max-width: 440px;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.75rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: var(--barn);
+      color: white;
+    }
+    .btn-primary:hover { background: #8f2020; }
+    .btn-outline {
+      background: transparent;
+      color: var(--cream);
+      border: 2px solid rgba(245,239,224,0.5);
+    }
+    .btn-outline:hover { border-color: var(--cream); }
+
+    .hero-image {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .hero-stat-bar {
+      background: var(--barn);
+      display: flex;
+      justify-content: center;
+      gap: 0;
+    }
+    .stat {
+      flex: 1;
+      max-width: 260px;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      border-right: 1px solid rgba(255,255,255,0.2);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: white;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      margin-top: 0.3rem;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--barn);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700;
+      color: var(--slate);
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+    }
+    .section-body {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #3d4f5c;
+      max-width: 680px;
+    }
+    .section-body p + p { margin-top: 1rem; }
+
+    /* ── STORY ── */
+    .story { background: var(--white); }
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .story-image {
+      position: relative;
+    }
+    .story-image img {
+      width: 100%;
+      border-radius: 6px;
+      display: block;
+    }
+    .story-image::after {
+      content: '';
+      position: absolute;
+      bottom: -16px;
+      right: -16px;
+      width: 60%;
+      height: 60%;
+      border: 4px solid var(--barn);
+      border-radius: 6px;
+      z-index: -1;
+    }
+
+    /* ── WHY WE EXIST ── */
+    .why { background: var(--slate); color: var(--cream); }
+    .why .section-title { color: var(--cream); }
+    .why .section-body { color: rgba(245,239,224,0.85); max-width: 100%; }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .why-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 6px;
+      padding: 2rem 1.75rem;
+    }
+    .why-card-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .why-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 0.6rem;
+    }
+    .why-card p {
+      font-size: 0.95rem;
+      color: rgba(245,239,224,0.75);
+      line-height: 1.7;
+    }
+
+    /* ── AVAILABLE DOG ── */
+    .adopt { background: var(--light); }
+    .dog-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+      max-width: 780px;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+    }
+    .dog-card-photos {
+      position: relative;
+      height: 420px;
+    }
+    .dog-card-photos img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .dog-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: var(--barn);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border-radius: 3px;
+    }
+    .dog-info {
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .dog-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--slate);
+      margin-bottom: 0.25rem;
+    }
+    .dog-meta {
+      font-size: 0.85rem;
+      color: var(--blue-dane);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .dog-bio {
+      font-size: 0.98rem;
+      line-height: 1.75;
+      color: #3d4f5c;
+      margin-bottom: 1.75rem;
+    }
+    .dog-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.75rem;
+    }
+    .tag {
+      background: var(--light);
+      border: 1px solid #ddd;
+      color: var(--slate);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      border-radius: 3px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── ALUMNI GRID ── */
+    .alumni { background: var(--white); }
+    .alumni-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
+    .alumni-card {
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 3/4;
+      background: var(--slate);
+    }
+    .alumni-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform 0.4s ease;
+    }
+    .alumni-card:hover img { transform: scale(1.04); }
+    .alumni-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(30,40,50,0.9));
+      padding: 2.5rem 1rem 1rem;
+    }
+    .alumni-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: white;
+    }
+    .alumni-detail {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.75);
+      margin-top: 0.15rem;
+    }
+    .alumni-heart {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      background: var(--barn);
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 3px;
+    }
+
+    /* ── DONATE ── */
+    .donate {
+      background: var(--cream);
+      text-align: center;
+    }
+    .donate .section-title { margin-bottom: 0.75rem; }
+    .donate .section-body { margin: 0 auto 2.5rem; text-align: left; max-width: 600px; }
+    .donate-options {
+      display: flex;
+      justify-content: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .donate-card {
+      background: white;
+      border-radius: 6px;
+      padding: 1.75rem 2rem;
+      min-width: 200px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+      text-decoration: none;
+      color: var(--slate);
+      transition: box-shadow 0.2s, transform 0.15s;
+      border: 2px solid transparent;
+    }
+    .donate-card:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      transform: translateY(-2px);
+      border-color: var(--barn);
+    }
+    .donate-card-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .donate-card-label {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--slate);
+    }
+    .donate-card-sub {
+      font-size: 0.82rem;
+      color: #777;
+      margin-top: 0.25rem;
+    }
+    .donate-note {
+      font-size: 0.82rem;
+      color: #888;
+    }
+
+    /* ── PARTNER BANNER ── */
+    .partner {
+      background: var(--wood);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+    .partner p {
+      color: var(--cream);
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+    .partner a {
+      color: var(--gold);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .partner a:hover { text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--slate);
+      color: rgba(245,239,224,0.65);
+      text-align: center;
+      padding: 2.5rem 2rem;
+      font-size: 0.85rem;
+    }
+    footer a { color: rgba(245,239,224,0.65); }
+    footer .footer-logo {
+      margin-bottom: 1rem;
+    }
+    footer .footer-logo img {
+      height: 56px;
+      opacity: 0.9;
+    }
+    footer p + p { margin-top: 0.4rem; }
+
+    /* ── LOGO DISPLAY ── */
+    .logo-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem 1rem;
+      background: var(--white);
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .logo-section img {
+      height: 160px;
+      width: auto;
+    }
+    .logo-tagline {
+      font-size: 0.85rem;
+      color: var(--blue-dane);
+      letter-spacing: 0.06em;
+      font-weight: 600;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-image { height: 320px; }
+      .hero-text { padding: 3rem 1.5rem; }
+      .story-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .story-image::after { display: none; }
+      .why-grid { grid-template-columns: 1fr; }
+      .dog-card { grid-template-columns: 1fr; }
+      .dog-card-photos { height: 300px; }
+      .hero-stat-bar { flex-wrap: wrap; }
+      .nav-links { gap: 1rem; }
+      .nav-links li:not(:last-child) { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="images/logo.jpg" alt="Rocky's Rescue Ranch">
+    <span>Rocky's<br>Rescue Ranch</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#adopt">Adopt</a></li>
+    <li><a href="dogs.html">Meet the Dogs</a></li>
+    <li><a href="#donate" class="cta">Donate</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">North Texas Great Dane Rescue</p>
+    <h1 class="hero-headline">Every giant deserves a<br><em>soft place to land.</em></h1>
+    <p class="hero-sub">We pull Great Danes and large breeds from North Texas shelters facing euthanasia, nurse them back to health, and find them the families they deserve.</p>
+    <div class="hero-actions">
+      <a href="#adopt" class="btn btn-primary">Meet Prince — Adopt Now</a>
+      <a href="dogs.html" class="btn btn-outline">See All Dogs</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="images/web/jd_bay.jpg" alt="JD with Bay, a rescued Caucasian Shepherd">
+  </div>
+</div>
+
+<!-- STAT BAR -->
+<div class="hero-stat-bar">
+  <div class="stat">
+    <div class="stat-number">90+</div>
+    <div class="stat-label">Dogs Rescued</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">4</div>
+    <div class="stat-label">Years Saving Lives</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">North TX</div>
+    <div class="stat-label">Shelters We Pull From</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">501(c)(3)</div>
+    <div class="stat-label">Nonprofit — EIN 42-3041982</div>
+  </div>
+</div>
+
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-image">
+        <img src="images/web/group1.jpg" alt="JD with one of his rescued Great Danes">
+      </div>
+      <div>
+        <p class="section-eyebrow">Our Story</p>
+        <h2 class="section-title">90 dogs. 4 years.<br>One mission growing.</h2>
+        <div class="section-body">
+          <p>Over the last four years, JD Middleton has rescued nearly 90 dogs — mostly Great Danes — in partnership with Save Rocky the Great Dane Rescue and Rehab. Save Rocky has funded the vetting and found homes throughout that partnership, pulling dogs from North Texas shelters that would otherwise face euthanasia.</p>
+          <p>But JD kept running into the same wall: dogs pulled from local shelters arrive sick. Kennel-acquired pneumonia, kennel cough, skin conditions — a dog pulled today needs 10 to 20 days of quarantine before it can be housed safely with others. Without dedicated space, you can only pull a dog or two at a time. And while you're nursing one back to health, the next one runs out of time.</p>
+          <p>Rocky's Rescue Ranch Foundation exists to solve that problem — to build dedicated shelter space in North Texas so we can pull 10 to 20 dogs at once, run proper quarantine, and stop losing dogs to a system that wasn't built to save them.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY WE EXIST -->
+<section class="why">
+  <div class="container">
+    <p class="section-eyebrow" style="color: var(--gold);">Why a Dedicated Shelter</p>
+    <h2 class="section-title">The bottleneck we're fixing</h2>
+    <p class="section-body">Most rescue dogs don't fail because people don't care. They fail because there isn't enough space to keep them safe while they heal.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <span class="why-card-icon">🏥</span>
+        <h3>Kennel Disease is Real</h3>
+        <p>Nearly every dog pulled from a local shelter arrives with kennel-acquired illness — pneumonia, kennel cough, skin infections. They need isolation before they can be around other dogs.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-card-icon">⏱️</span>
+        <h3>Time Kills</h3>
+        <p>Quarantine takes 10–20 days. Without dedicated space, rescuers can only pull one or two dogs at a time — while dozens more run out of time on the shelter floor.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-card-icon">🏡</span>
+        <h3>Space = Capacity</h3>
+        <p>A dedicated facility with proper quarantine areas means pulling 10–20 dogs at once. More pulls, more recoveries, more adoptions — and fewer giants lost to a broken system.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADOPT -->
+<section class="adopt" id="adopt">
+  <div class="container">
+    <p class="section-eyebrow">Available for Adoption</p>
+    <h2 class="section-title" style="margin-bottom: 2rem;">Ready for his forever home</h2>
+    <div class="dog-card">
+      <div class="dog-card-photos">
+        <img src="images/web/prince1.jpg" alt="Prince, a black Cane Corso mix available for adoption">
+        <span class="dog-badge">Available Now</span>
+      </div>
+      <div class="dog-info">
+        <div class="dog-name">Prince</div>
+        <div class="dog-meta">2 years old &nbsp;·&nbsp; 115 lbs &nbsp;·&nbsp; Cane Corso Mix</div>
+        <p class="dog-bio">Prince came to us from a cruelty case in west Texas. He was pulled from a situation no dog should endure — and despite everything, he's one of the most loving dogs we've had come through. One of his eyes carries a scar from his past, but his spirit doesn't. Prince is gentle, affectionate, and ready to be somebody's whole world.</p>
+        <div class="dog-tags">
+          <span class="tag">Gentle</span>
+          <span class="tag">Cruelty Survivor</span>
+          <span class="tag">115 lbs</span>
+          <span class="tag">House Trained</span>
+          <span class="tag">Adult Dogs OK</span>
+        </div>
+        <a href="https://form.jotform.com/51994996709176" target="_blank" class="btn btn-primary">Inquire About Prince</a>
+      </div>
+    </div>
+    <p style="margin-top: 2rem; text-align: center;">
+      <a href="dogs.html" style="color: var(--barn); font-weight: 600; text-decoration: none;">See all dogs, including alumni success stories →</a>
+    </p>
+  </div>
+</section>
+
+<!-- ALUMNI SPOTLIGHT -->
+<section class="alumni">
+  <div class="container">
+    <p class="section-eyebrow">Success Stories</p>
+    <h2 class="section-title">They made it home.</h2>
+    <p class="section-body">Every one of these dogs was pulled from a Texas shelter facing euthanasia. Every one of them found a family.</p>
+    <div class="alumni-grid">
+      <div class="alumni-card">
+        <img src="images/web/domino1.jpg" alt="Domino — adopted">
+        <span class="alumni-heart">Adopted ♥</span>
+        <div class="alumni-overlay">
+          <div class="alumni-name">Domino</div>
+          <div class="alumni-detail">2 yr old Harlequin Great Dane</div>
+        </div>
+      </div>
+      <div class="alumni-card">
+        <img src="images/web/tiny1.jpg" alt="Tiny — adopted">
+        <span class="alumni-heart">Adopted ♥</span>
+        <div class="alumni-overlay">
+          <div class="alumni-name">Tiny</div>
+          <div class="alumni-detail">8 yr old Merle Dane · Pulled minutes from euthanasia</div>
+        </div>
+      </div>
+      <div class="alumni-card">
+        <img src="images/web/oreo1.jpg" alt="Oreo — adopted">
+        <span class="alumni-heart">Adopted ♥</span>
+        <div class="alumni-overlay">
+          <div class="alumni-name">Oreo</div>
+          <div class="alumni-detail">Harlequin Great Dane</div>
+        </div>
+      </div>
+      <div class="alumni-card">
+        <img src="images/web/caden1.jpg" alt="Caden — adopted">
+        <span class="alumni-heart">Adopted ♥</span>
+        <div class="alumni-overlay">
+          <div class="alumni-name">Caden</div>
+          <div class="alumni-detail">Blue Great Dane · Cruelty case, Houston</div>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top: 2rem; text-align: center;">
+      <a href="dogs.html" style="color: var(--barn); font-weight: 600; text-decoration: none;">See all 90+ rescue stories →</a>
+    </p>
+  </div>
+</section>
+
+<!-- DONATE -->
+<section class="donate" id="donate">
+  <div class="container">
+    <p class="section-eyebrow">Support the Mission</p>
+    <h2 class="section-title">Help us build the space<br>to save more lives.</h2>
+    <p class="section-body">Rocky's Rescue Ranch Foundation is a registered 501(c)(3) nonprofit (EIN 42-3041982). Your donation is tax-deductible and goes directly toward veterinary care, food, and building the dedicated shelter facility that will let us pull 10–20 dogs at a time from North Texas shelters.</p>
+    <div class="donate-options">
+      <a href="https://givebutter.com/rockysrescueranch" target="_blank" class="donate-card">
+        <div class="donate-card-icon">💛</div>
+        <div class="donate-card-label">Donate Online</div>
+        <div class="donate-card-sub">Card, Apple Pay, Google Pay, ACH</div>
+      </a>
+      <a href="https://www.facebook.com/rockysrescueranch" target="_blank" class="donate-card">
+        <div class="donate-card-icon">📘</div>
+        <div class="donate-card-label">Follow on Facebook</div>
+        <div class="donate-card-sub">Stay updated on rescues</div>
+      </a>
+      <div class="donate-card">
+        <div class="donate-card-icon">💸</div>
+        <div class="donate-card-label">Zelle / Venmo</div>
+        <div class="donate-card-sub">Contact us directly</div>
+      </div>
+    </div>
+    <p class="donate-note">501(c)(3) tax-exempt organization · EIN 42-3041982 · Dallas, TX</p>
+  </div>
+</section>
+
+<!-- PARTNER BANNER -->
+<div class="partner">
+  <p>In partnership with <a href="https://saverockythegreatdane.org" target="_blank">Save Rocky the Great Dane Rescue and Rehab</a> — rescuing, rehabilitating, and rehoming Great Danes since 2013.</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img src="images/logo.jpg" alt="Rocky's Rescue Ranch">
+  </div>
+  <p><strong style="color: var(--cream);">Rocky's Rescue Ranch Foundation</strong></p>
+  <p>In Partnership with Save Rocky the Great Dane Rescue and Rehab</p>
+  <p style="margin-top: 0.75rem;">501(c)(3) Nonprofit · EIN 42-3041982 · Dallas, TX</p>
+  <p style="margin-top: 0.5rem;"><a href="mailto:rockysrescueranch@gmail.com">rockysrescueranch@gmail.com</a></p>
+  <p style="margin-top: 1rem; font-size: 0.75rem; opacity: 0.5;">© 2026 Rocky's Rescue Ranch Foundation. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
