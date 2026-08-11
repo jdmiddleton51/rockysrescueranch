@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meet the Dogs — Rocky's Rescue Ranch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --barn:      #B02B2B;
+      --wood:      #7A4F2D;
+      --cream:     #F5EFE0;
+      --slate:     #2A3540;
+      --blue-dane: #4A6070;
+      --gold:      #C8952A;
+      --white:     #FFFFFF;
+      --light:     #F9F6F0;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Source Sans 3', sans-serif; background: var(--light); color: var(--slate); line-height: 1.6; }
+
+    nav {
+      background: var(--slate); padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .nav-logo img { height: 48px; width: 48px; object-fit: contain; border-radius: 4px; }
+    .nav-logo span { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.1rem; color: var(--cream); line-height: 1.2; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--cream); text-decoration: none; font-weight: 500; font-size: 0.95rem; letter-spacing: 0.03em; opacity: 0.85; transition: opacity 0.2s; }
+    .nav-links a:hover { opacity: 1; }
+    .nav-links a.cta { background: var(--barn); color: white; padding: 0.4rem 1.1rem; border-radius: 4px; opacity: 1; font-weight: 600; }
+    .nav-links a.cta:hover { background: #8f2020; }
+
+    .page-header {
+      background: var(--slate);
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+    }
+    .page-header .eyebrow {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem;
+    }
+    .page-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900; color: white; margin-bottom: 0.75rem;
+    }
+    .page-header p {
+      color: rgba(245,239,224,0.8); font-size: 1.05rem; max-width: 520px; margin: 0 auto;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+    /* AVAILABLE SECTION */
+    .section { padding: 4rem 2rem; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--barn); margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 700; color: var(--slate);
+      margin-bottom: 2rem; padding-bottom: 1rem;
+      border-bottom: 3px solid var(--barn);
+      display: inline-block;
+    }
+
+    /* FEATURED DOG */
+    .featured-dog {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.09);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-bottom: 2rem;
+    }
+    .featured-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 3px;
+      height: 480px;
+    }
+    .featured-gallery img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+    }
+    .featured-gallery img:first-child {
+      grid-column: 1 / -1;
+    }
+    .featured-info { padding: 2.5rem 2.5rem; display: flex; flex-direction: column; justify-content: center; }
+    .dog-available-badge {
+      display: inline-block;
+      background: #1a7a3a; color: white;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 0.3rem 0.75rem;
+      border-radius: 3px; margin-bottom: 1rem;
+    }
+    .dog-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem; font-weight: 900; color: var(--slate);
+      margin-bottom: 0.25rem;
+    }
+    .dog-meta {
+      font-size: 0.85rem; color: var(--blue-dane);
+      font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; margin-bottom: 1.25rem;
+    }
+    .dog-bio { font-size: 0.98rem; line-height: 1.8; color: #3d4f5c; margin-bottom: 1.5rem; }
+    .dog-bio p + p { margin-top: 0.75rem; }
+    .dog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.75rem; }
+    .tag {
+      background: var(--light); border: 1px solid #ddd;
+      color: var(--slate); font-size: 0.78rem; font-weight: 600;
+      padding: 0.25rem 0.65rem; border-radius: 3px;
+    }
+    .btn {
+      display: inline-block; padding: 0.75rem 1.75rem;
+      border-radius: 4px; font-weight: 600; font-size: 1rem;
+      text-decoration: none; transition: background 0.2s, transform 0.15s;
+      cursor: pointer; border: none;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--barn); color: white; }
+    .btn-primary:hover { background: #8f2020; }
+
+    /* BAY — LONG TERM FOSTER */
+    .foster-section { background: var(--white); }
+    .foster-card {
+      background: var(--slate);
+      border-radius: 8px; overflow: hidden;
+      display: grid; grid-template-columns: 360px 1fr;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.12);
+    }
+    .foster-card img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .foster-info { padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; }
+    .foster-badge {
+      display: inline-block;
+      background: var(--gold); color: var(--slate);
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 0.3rem 0.75rem;
+      border-radius: 3px; margin-bottom: 1rem;
+    }
+    .foster-info .dog-name { color: var(--cream); }
+    .foster-info .dog-meta { color: rgba(245,239,224,0.7); }
+    .foster-info .dog-bio { color: rgba(245,239,224,0.85); }
+
+    /* ALUMNI GRID */
+    .alumni-section { background: var(--light); }
+    .alumni-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    .alumni-card {
+      border-radius: 6px; overflow: hidden;
+      position: relative; aspect-ratio: 3/4;
+      background: var(--slate);
+    }
+    .alumni-card img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      transition: transform 0.4s ease;
+    }
+    .alumni-card:hover img { transform: scale(1.04); }
+    .alumni-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(30,40,50,0.9));
+      padding: 2.5rem 0.85rem 0.85rem;
+    }
+    .alumni-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: white; }
+    .alumni-detail { font-size: 0.75rem; color: rgba(255,255,255,0.75); margin-top: 0.1rem; }
+    .alumni-heart {
+      position: absolute; top: 0.6rem; right: 0.6rem;
+      background: var(--barn); color: white;
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 0.2rem 0.5rem; border-radius: 3px;
+    }
+
+    /* PARTNER BANNER */
+    .partner { background: var(--wood); padding: 2rem 2rem; text-align: center; }
+    .partner p { color: var(--cream); font-size: 0.95rem; opacity: 0.9; }
+    .partner a { color: var(--gold); font-weight: 600; text-decoration: none; }
+    .partner a:hover { text-decoration: underline; }
+
+    footer {
+      background: var(--slate); color: rgba(245,239,224,0.65);
+      text-align: center; padding: 2.5rem 2rem; font-size: 0.85rem;
+    }
+    footer a { color: rgba(245,239,224,0.65); }
+    footer .footer-logo { margin-bottom: 1rem; }
+    footer .footer-logo img { height: 56px; opacity: 0.9; }
+    footer p + p { margin-top: 0.4rem; }
+
+    @media (max-width: 768px) {
+      .featured-dog { grid-template-columns: 1fr; }
+      .featured-gallery { height: 280px; grid-template-columns: 1fr 1fr; }
+      .featured-gallery img:first-child { grid-column: 1 / -1; }
+      .foster-card { grid-template-columns: 1fr; }
+      .foster-card img { height: 280px; }
+      .nav-links li:not(:last-child) { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="images/logo.jpg" alt="Rocky's Rescue Ranch">
+    <span>Rocky's<br>Rescue Ranch</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#story">Our Story</a></li>
+    <li><a href="index.html#adopt">Adopt</a></li>
+    <li><a href="dogs.html">Meet the Dogs</a></li>
+    <li><a href="index.html#donate" class="cta">Donate</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <p class="eyebrow">Every dog has a story</p>
+  <h1>Meet the Dogs</h1>
+  <p>90+ rescues over four years — pulled from North Texas shelters, nursed back to health, and placed in forever homes.</p>
+</div>
+
+<!-- AVAILABLE -->
+<section class="section" style="background: var(--light);">
+  <div class="container">
+    <p class="section-label">Ready for Adoption</p>
+    <h2 class="section-title">Available Now</h2>
+
+    <div class="featured-dog">
+      <div class="featured-gallery">
+        <img src="images/web/prince1.jpg" alt="Prince">
+        <img src="images/web/prince2.jpg" alt="Prince">
+        <img src="images/web/prince3.jpg" alt="Prince">
+      </div>
+      <div class="featured-info">
+        <span class="dog-available-badge">✓ Available</span>
+        <div class="dog-name">Prince</div>
+        <div class="dog-meta">2 yrs · 115 lbs · Cane Corso Mix · Dallas, TX</div>
+        <div class="dog-bio">
+          <p>Prince came to us from a cruelty case in west Texas. He was pulled from a situation no dog should endure — and despite everything, he is one of the most affectionate, gentle dogs we have ever had come through this rescue.</p>
+          <p>Prince is ready for a family who will give him the calm, loving home he never had. He does well with adults and older children, and has shown good behavior around other dogs. At 115 pounds he's a big presence, but a gentle one.</p>
+        </div>
+        <div class="dog-tags">
+          <span class="tag">Gentle Giant</span>
+          <span class="tag">Cruelty Survivor</span>
+          <span class="tag">Good with Dogs</span>
+          <span class="tag">House Trained</span>
+          <span class="tag">Needs Calm Home</span>
+        </div>
+        <a href="https://form.jotform.com/51994996709176" target="_blank" class="btn btn-primary">Inquire About Prince</a>
+      </div>
+    </div>
+
+    <div class="featured-dog" style="margin-top: 3rem;">
+      <div class="featured-gallery">
+        <img src="images/web/caden1.jpg" alt="Caden">
+      </div>
+      <div class="featured-info">
+        <span class="dog-available-badge">✓ Available</span>
+        <div class="dog-name">Caden</div>
+        <div class="dog-meta">2 yrs · Blue Great Dane · Cruelty Case, Houston</div>
+        <div class="dog-bio">
+          <p>Caden came to us from a cruelty case in Houston. He's a big, beautiful blue Great Dane who has come a long way since his rescue — fully obedience trained, and an amazing dog all around. Caden does need slow, calm introductions to new people at the front door, but once he warms up he's a true gem.</p>
+        </div>
+        <div class="dog-tags">
+          <span class="tag">Blue Great Dane</span>
+          <span class="tag">Obedience Trained</span>
+          <span class="tag">Cruelty Survivor</span>
+          <span class="tag">Slow Intros Needed</span>
+        </div>
+        <a href="https://form.jotform.com/51994996709176" target="_blank" class="btn btn-primary">Inquire About Caden</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BAY AVAILABLE -->
+<section class="section" style="background: var(--cream);">
+  <div class="container">
+    <div class="featured-dog" style="margin-top: 0;">
+      <div class="featured-gallery">
+        <img src="images/web/bay3.jpg" alt="Bay">
+        <img src="images/web/bay4.jpg" alt="Bay">
+        <img src="images/web/bay2.jpg" alt="Bay">
+      </div>
+      <div class="featured-info">
+        <span class="dog-available-badge">✓ Available</span>
+        <div class="dog-name">Bay</div>
+        <div class="dog-meta">Caucasian Shepherd · Fort Worth Shelter</div>
+        <div class="dog-bio">
+          <p>Bay was pulled from the Fort Worth shelter with minutes to spare. He'd been on the list, and JD got the call. He came home that day and never really left.</p>
+          <p>Bay has been with JD for over a year now — one of those dogs that changes what you think a rescue dog can be. Calm, loyal, perceptive. He's proof of what these dogs become when someone gives them a real chance. Bay is now available and looking for his forever home.</p>
+        </div>
+        <div class="dog-tags">
+          <span class="tag">Caucasian Shepherd</span>
+          <span class="tag">Calm & Loyal</span>
+          <span class="tag">Fort Worth Rescue</span>
+        </div>
+        <a href="https://form.jotform.com/51994996709176" target="_blank" class="btn btn-primary">Inquire About Bay</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALUMNI -->
+<section class="section alumni-section">
+  <div class="container">
+    <p class="section-label">Success Stories</p>
+    <h2 class="section-title">They made it home.</h2>
+    <p style="color: #3d4f5c; margin-bottom: 2rem; max-width: 600px;">Every one of these dogs was pulled from a Texas shelter facing euthanasia. Every one found a family. This is what Rocky's Rescue Ranch is built for.</p>
+
+    <div class="alumni-grid">
+      <div class="alumni-card">
+        <img src="images/web/domino1.jpg" alt="Domino">
+        <span class="alumni-heart">Adopted ♥</span>
+        <div class="alumni-overlay">
+          <div class="alumni-name">Domino</div>
+          <div class="alumni-detail">2 yr · Harlequin Great Dane</div>
+        </div>
+      </div>
+      <div class="alumni-card">
+        <img src="images/web/tiny1.jpg" alt="Tiny">
+        <span class="alumni-heart">Adopted ♥</span>
+        <div class="alumni-overlay">
+          <div class="alumni-name">Tiny</div>
+          <div class="alumni-detail">8 yr · Merle Dane · Pulled minutes from euthanasia</div>
+        </div>
+      </div>
+      <div class="alumni-card">
+        <img src="images/web/oreo1.jpg" alt="Oreo">
+        <span class="alumni-heart">Adopted ♥</span>
+        <div class="alumni-overlay">
+          <div class="alumni-name">Oreo</div>
+          <div class="alumni-detail">Harlequin Great Dane</div>
+        </div>
+      </div>
+
+      <div class="alumni-card">
+        <img src="images/web/violet1.jpg" alt="Violet">
+        <span class="alumni-heart">Adopted ♥</span>
+        <div class="alumni-overlay">
+          <div class="alumni-name">Violet</div>
+          <div class="alumni-detail">Black Great Dane · Rescued June 2023</div>
+        </div>
+      </div>
+      <div class="alumni-card">
+        <img src="images/web/nova1.jpg" alt="Nova">
+        <span class="alumni-heart">Adopted ♥</span>
+        <div class="alumni-overlay">
+          <div class="alumni-name">Nova</div>
+          <div class="alumni-detail">Blue/Grey Great Dane</div>
+        </div>
+      </div>
+      <div class="alumni-card">
+        <img src="images/web/colbyjack1.jpg" alt="Colby Jack">
+        <span class="alumni-heart">Adopted ♥</span>
+        <div class="alumni-overlay">
+          <div class="alumni-name">Colby Jack</div>
+          <div class="alumni-detail">Brindle Great Dane</div>
+        </div>
+      </div>
+      <div class="alumni-card">
+        <img src="images/web/pearla1.jpg" alt="Pearla">
+        <span class="alumni-heart">Adopted ♥</span>
+        <div class="alumni-overlay">
+          <div class="alumni-name">Pearla</div>
+          <div class="alumni-detail">Fawn Dane Mix · Mama of 5 pups</div>
+        </div>
+      </div>
+      <div class="alumni-card">
+        <img src="images/web/luna1.jpg" alt="Luna">
+        <span class="alumni-heart">Adopted ♥</span>
+        <div class="alumni-overlay">
+          <div class="alumni-name">Luna</div>
+          <div class="alumni-detail">Blue Great Dane</div>
+        </div>
+      </div>
+      <div class="alumni-card">
+        <img src="images/web/waylon1.jpg" alt="Waylon">
+        <span class="alumni-heart">Adopted ♥</span>
+        <div class="alumni-overlay">
+          <div class="alumni-name">Waylon</div>
+          <div class="alumni-detail">Black Great Dane</div>
+        </div>
+      </div>
+      <div class="alumni-card">
+        <img src="images/web/harlequin1.jpg" alt="Foster alumnus">
+        <span class="alumni-heart">Adopted ♥</span>
+        <div class="alumni-overlay">
+          <div class="alumni-name">Alumni</div>
+          <div class="alumni-detail">Harlequin Great Dane</div>
+        </div>
+      </div>
+
+    </div>
+
+    <p style="margin-top: 2.5rem; font-size: 0.95rem; color: #777; text-align: center;">
+      These are just the ones we have photos of. 90+ dogs have come through over four years — all rescued, all placed.
+    </p>
+  </div>
+</section>
+
+<!-- DONATE CTA -->
+<section class="section" style="background: var(--barn); text-align: center;">
+  <div class="container">
+    <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: white; margin-bottom: 0.75rem;">Help us save the next one.</h2>
+    <p style="color: rgba(255,255,255,0.85); margin-bottom: 2rem; font-size: 1.05rem; max-width: 520px; margin-left: auto; margin-right: auto;">Every dollar goes toward vet care, food, and building the facility that lets us pull 10–20 dogs at a time.</p>
+    <a href="index.html#donate" class="btn" style="background: white; color: var(--barn); font-weight: 700; font-size: 1.05rem; padding: 0.85rem 2.25rem;">Donate Now</a>
+  </div>
+</section>
+
+<div class="partner">
+  <p>In partnership with <a href="https://saverockythegreatdane.org" target="_blank">Save Rocky the Great Dane Rescue and Rehab</a> — rescuing, rehabilitating, and rehoming Great Danes since 2013.</p>
+</div>
+
+<footer>
+  <div class="footer-logo">
+    <img src="images/logo.jpg" alt="Rocky's Rescue Ranch">
+  </div>
+  <p><strong style="color: var(--cream);">Rocky's Rescue Ranch Foundation</strong></p>
+  <p>In Partnership with Save Rocky the Great Dane Rescue and Rehab</p>
+  <p style="margin-top: 0.75rem;">501(c)(3) Nonprofit · EIN 42-3041982 · Dallas, TX</p>
+  <p style="margin-top: 0.5rem;"><a href="mailto:rockysrescueranch@gmail.com">rockysrescueranch@gmail.com</a></p>
+  <p style="margin-top: 1rem; font-size: 0.75rem; opacity: 0.5;">© 2026 Rocky's Rescue Ranch Foundation. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
