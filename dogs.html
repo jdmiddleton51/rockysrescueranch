@@ -131,27 +131,6 @@
     .btn-primary { background: var(--barn); color: white; }
     .btn-primary:hover { background: #8f2020; }
 
-    /* BAY — LONG TERM FOSTER */
-    .foster-section { background: var(--white); }
-    .foster-card {
-      background: var(--slate);
-      border-radius: 8px; overflow: hidden;
-      display: grid; grid-template-columns: 360px 1fr;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.12);
-    }
-    .foster-card img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-    .foster-info { padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; }
-    .foster-badge {
-      display: inline-block;
-      background: var(--gold); color: var(--slate);
-      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; padding: 0.3rem 0.75rem;
-      border-radius: 3px; margin-bottom: 1rem;
-    }
-    .foster-info .dog-name { color: var(--cream); }
-    .foster-info .dog-meta { color: rgba(245,239,224,0.7); }
-    .foster-info .dog-bio { color: rgba(245,239,224,0.85); }
-
     /* ALUMNI GRID */
     .alumni-section { background: var(--light); }
     .alumni-grid {
@@ -204,8 +183,6 @@
       .featured-dog { grid-template-columns: 1fr; }
       .featured-gallery { height: 280px; grid-template-columns: 1fr 1fr; }
       .featured-gallery img:first-child { grid-column: 1 / -1; }
-      .foster-card { grid-template-columns: 1fr; }
-      .foster-card img { height: 280px; }
       .nav-links li:not(:last-child) { display: none; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -272,12 +249,12 @@
       <div class="featured-info">
         <span class="dog-available-badge">✓ Available</span>
         <div class="dog-name">Caden</div>
-        <div class="dog-meta">2 yrs · Blue Great Dane · Cruelty Case, Houston</div>
+        <div class="dog-meta">2 yrs · Merle Great Dane · Cruelty Case, Houston</div>
         <div class="dog-bio">
-          <p>Caden came to us from a cruelty case in Houston. He's a big, beautiful blue Great Dane who has come a long way since his rescue — fully obedience trained, and an amazing dog all around. Caden does need slow, calm introductions to new people at the front door, but once he warms up he's a true gem.</p>
+          <p>Caden came to us from a cruelty case in Houston. He's a big, beautiful Merle Great Dane who has come a long way since his rescue — fully obedience trained, and an amazing dog all around. Caden does need slow, calm introductions to new people at the front door, but once he warms up he's a true gem.</p>
         </div>
         <div class="dog-tags">
-          <span class="tag">Blue Great Dane</span>
+          <span class="tag">Merle Great Dane</span>
           <span class="tag">Obedience Trained</span>
           <span class="tag">Cruelty Survivor</span>
           <span class="tag">Slow Intros Needed</span>
@@ -285,26 +262,7 @@
         <a href="https://form.jotform.com/51994996709176" target="_blank" class="btn btn-primary">Inquire About Caden</a>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- LONG-TERM FOSTER -->
-<section class="section foster-section">
-  <div class="container">
-    <p class="section-label">Available for Adoption</p>
-    <h2 class="section-title">Bay</h2>
-    <div class="foster-card">
-      <img src="images/web/bay1.jpg" alt="Bay — Caucasian Shepherd">
-      <div class="foster-info">
-        <span class="foster-badge">Available for Adoption</span>
-        <div class="dog-name">Bay</div>
-        <div class="dog-meta">Caucasian Shepherd · Fort Worth Shelter</div>
-        <div class="dog-bio">
-          <p>Bay was pulled from the Fort Worth shelter with minutes to spare. He'd been on the list, and JD got the call. He came home that day and never really left.</p>
-          <p>Bay has been with JD for over a year now — one of those dogs that changes what you think a rescue dog can be. Calm, loyal, perceptive. He's proof of what these dogs become when someone gives them a real chance. Bay is now available and looking for his forever home.</p>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -397,14 +355,7 @@
           <div class="alumni-detail">Harlequin Great Dane</div>
         </div>
       </div>
-      <div class="alumni-card">
-        <img src="images/web/novaonyx.jpg" alt="Bay">
-        <span class="alumni-heart" style="background:#1a7a3a;">Available</span>
-        <div class="alumni-overlay">
-          <div class="alumni-name">Bay</div>
-          <div class="alumni-detail">Caucasian Shepherd</div>
-        </div>
-      </div>
+
     </div>
 
     <p style="margin-top: 2.5rem; font-size: 0.95rem; color: #777; text-align: center;">
