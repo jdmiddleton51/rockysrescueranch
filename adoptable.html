@@ -4,8 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adoptable Dogs — Rockys Rescue Ranch Foundation</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -13,36 +11,25 @@
       --barn: #A8322C; --wood: #7A4F2D; --cream: #F5EFE0; --slate: #2E2D32;
       --blue-dane: #5A5862; --gold: #C8952A; --white: #FFFFFF; --light: #F9F6F0;
     }
-    html { scroll-behavior: smooth; }
     body { font-family: 'Source Sans 3', sans-serif; background: var(--light); color: var(--slate); line-height: 1.6; }
-
     nav { background: var(--slate); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 100; }
     .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
     .nav-logo img { height: 46px; width: 46px; object-fit: contain; background: var(--cream); border-radius: 50%; padding: 3px; }
     .nav-logo span { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.1rem; color: var(--cream); line-height: 1.2; }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { color: var(--cream); text-decoration: none; font-weight: 500; font-size: 0.95rem; letter-spacing: 0.03em; opacity: 0.85; transition: opacity 0.2s; }
-    .nav-links a:hover { opacity: 1; }
+    .nav-links a { color: var(--cream); text-decoration: none; font-weight: 500; font-size: 0.95rem; opacity: 0.85; }
     .nav-links a.cta { background: var(--barn); color: white; padding: 0.4rem 1.1rem; border-radius: 4px; opacity: 1; font-weight: 600; }
-    .nav-links a.cta:hover { background: #8c2622; }
-
     .page-head { background: var(--slate); padding: 3.5rem 2rem; text-align: center; }
     .page-head .eyebrow { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
     .page-head h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; color: var(--white); line-height: 1.15; }
     .page-head p { color: rgba(245,239,224,0.85); max-width: 640px; margin: 1rem auto 0; }
     .head-actions { margin-top: 1.75rem; display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
-    .btn { display: inline-block; padding: 0.7rem 1.6rem; border-radius: 4px; font-weight: 600; font-size: 1rem; text-decoration: none; transition: background 0.2s, transform 0.15s; border: none; }
-    .btn:hover { transform: translateY(-1px); }
+    .btn { display: inline-block; padding: 0.7rem 1.6rem; border-radius: 4px; font-weight: 600; font-size: 1rem; text-decoration: none; border: none; }
     .btn-primary { background: var(--barn); color: white; }
-    .btn-primary:hover { background: #8c2622; }
     .btn-gold { background: var(--gold); color: var(--slate); }
-    .btn-gold:hover { background: #b1821f; }
     .btn-outline { background: transparent; color: var(--cream); border: 2px solid rgba(245,239,224,0.5); }
-    .btn-outline:hover { border-color: var(--cream); }
-
     section { padding: 4rem 2rem; }
     .container { max-width: 1060px; margin: 0 auto; }
-
     .dog { background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.07); display: grid; grid-template-columns: 420px 1fr; margin-bottom: 2.5rem; }
     .dog-photo { background: var(--slate); min-height: 340px; }
     .dog-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
@@ -53,31 +40,85 @@
     .dog-blurb { margin-top: 1rem; color: #4a4a50; }
     .facts { list-style: none; margin-top: 1.25rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.4rem 1.5rem; }
     .facts li { font-size: 0.93rem; }
-    .facts b { color: var(--slate); font-weight: 600; }
     .yes { color: #2e7d32; font-weight: 600; }
     .no { color: var(--barn); font-weight: 600; }
     .maybe { color: var(--wood); font-weight: 600; }
     .dog-actions { margin-top: 1.5rem; display: flex; gap: 0.6rem; flex-wrap: wrap; }
     .btn-sm { padding: 0.55rem 1.2rem; font-size: 0.92rem; }
     .btn-dark { background: var(--slate); color: var(--cream); }
-    .btn-dark:hover { background: #45444a; }
-
     .note { background: var(--cream); border-radius: 8px; padding: 2rem; text-align: center; }
     .note h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 0.6rem; }
     .note p { max-width: 620px; margin: 0 auto; color: #4a4a50; }
-
     footer { background: var(--slate); color: rgba(245,239,224,0.65); text-align: center; padding: 2.5rem 2rem; font-size: 0.85rem; }
     footer a { color: rgba(245,239,224,0.65); }
-    footer .footer-logo { margin-bottom: 1rem; }
-    footer .footer-logo img { height: 72px; width: 72px; object-fit: contain; background: var(--cream); border-radius: 50%; padding: 5px; }
-    footer p + p { margin-top: 0.4rem; }
+    footer .footer-logo img { height: 72px; width: 72px; object-fit: contain; background: var(--cream); border-radius: 50%; padding: 5px; margin-bottom: 1rem; }
     .footer-social { margin-top: 1rem; display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap; }
     .footer-social a { color: var(--cream); text-decoration: none; font-weight: 600; }
-    .footer-social a:hover { text-decoration: underline; }
-
     @media (max-width: 820px) {
       .dog { grid-template-columns: 1fr; }
       .dog-photo { height: 300px; min-height: 0; }
       .dog-body { padding: 1.5rem; }
       .facts { grid-template-columns: 1fr; }
       .nav-links { gap: 1rem; }
+      .nav-links li:not(:last-child) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="images/web/logo_doghouse.jpg" alt="Rockys Rescue Ranch">
+    <span>Rockys<br>Rescue Ranch</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#story">Our Story</a></li>
+    <li><a href="adoptable.html">Adoptable Dogs</a></li>
+    <li><a href="dogs.html">Meet the Dogs</a></li>
+    <li><a href="index.html#donate" class="cta">Donate</a></li>
+  </ul>
+</nav>
+
+<div class="page-head">
+  <p class="eyebrow">Looking for a home</p>
+  <h1>Adoptable Dogs</h1>
+  <p>These are the dogs currently in our care and ready for the right family. Every one of them is vetted and placed through an application and a conversation about your home, because the right match matters more than a fast one.</p>
+  <div class="head-actions">
+    <a href="https://form.jotform.com/262514500159047" target="_blank" rel="noopener" class="btn btn-primary">Apply to Adopt</a>
+    <a href="https://form.jotform.com/262514500159047" target="_blank" rel="noopener" class="btn btn-gold">Foster</a>
+    <a href="https://form.jotform.com/262514683864062" target="_blank" rel="noopener" class="btn btn-outline">Owner Surrender</a>
+  </div>
+</div><section>
+  <div class="container">
+
+    <div class="dog">
+      <div class="dog-photo"><img src="images/web/hera.jpg" alt="Hera, a brindle Cane Corso"></div>
+      <div class="dog-body">
+        <span class="dog-status">Available</span>
+        <div class="dog-name">Hera</div>
+        <div class="dog-vitals">4-year-old female Cane Corso &middot; brindle &middot; about 100 lb</div>
+        <p class="dog-blurb">Hera is a big girl with an even bigger heart. She is steady, affectionate, and happiest right beside her people. She would do well with a family who appreciates the breed and has room for her to stretch out.</p>
+        <ul class="facts">
+          <li><b>Good with dogs:</b> <span class="yes">Yes</span></li>
+          <li><b>Good with kids:</b> <span class="yes">Yes</span></li>
+          <li><b>Cats:</b> <span class="no">No</span></li>
+          <li><b>Location:</b> North Texas</li>
+        </ul>
+        <div class="dog-actions">
+          <a href="https://form.jotform.com/262514500159047" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Apply for Hera</a>
+          <a href="mailto:rockysrescueranchfoundation@gmail.com?subject=Question%20about%20Hera" class="btn btn-dark btn-sm">Ask about Hera</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="dog">
+      <div class="dog-photo"><img src="images/web/frank.jpg" alt="Baby Frank, a black Cane Corso"></div>
+      <div class="dog-body">
+        <span class="dog-status">Available</span>
+        <div class="dog-name">Baby Frank</div>
+        <div class="dog-vitals">2.5-year-old male Cane Corso &middot; black &middot; about 140 lb &middot; neutered and fully vetted</div>
+        <p class="dog-blurb">Frank is a true Corso: loyal, deeply bonded to his people, and protective of his pack. He is crate trained, house trained and leash trained, and he has lived successfully with a large pack of dogs. He needs slow, controlled introductions to new people and dogs, and he wears a muzzle at the vet as a precaution until he is comfortable. For an experienced owner who understands the breed, he is a wonderful dog.</p>
+        <ul class="facts">
+          <li><b>Good with dogs:</b> <span class="yes">Yes, after controlled introductions</span></li>
+          <li><b>Good with kids:</b> <span class="no">No</span></li>
+          <li><b>Cats:</b> <span
